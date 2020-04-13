@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseFunctionsService } from './firebase-functions.service';
+import { FirebaseService } from './firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   formGroup: FormGroup;
   errorMessage: string;
 
-  constructor(private readonly functionsService: FirebaseFunctionsService) {
+  constructor(private readonly firebaseService: FirebaseService) {
     this.savedText = 'todo: this text should come from the backend';
   }
 
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.errorMessage = null;
     const text = this.formGroup.get('textArea').value;
     try {
-      await this.functionsService.saveUserData(text);
+      await this.firebaseService.saveUserData(text);
     } catch (error) {
       this.errorMessage = error.message;
     }

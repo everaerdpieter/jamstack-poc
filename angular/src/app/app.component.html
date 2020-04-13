@@ -1,11 +1,14 @@
 <main>
-  <section class="displaySavedText">
-    <h3>Saved text</h3>
-    <p>{{ savedText }}</p>
+  <section class="login">
+    <h3>Login form</h3>
+    <app-login-form></app-login-form>
   </section>
-  <form class="saveForm" [formGroup]="formGroup" (submit)="submit()">
-    <textarea formControlName="textArea"> </textarea>
-    <p class="errorMessage">{{ this.errorMessage }}</p>
-    <button type="submit" [disabled]="!formGroup.valid">Save</button>
-  </form>
+  <section>
+    <h3>User data form</h3>
+    <form class="userdata" [formGroup]="formGroup" (submit)="submit()">
+      <textarea formControlName="textArea"> </textarea>
+      <p class="errorMessage">{{ this.errorMessage }}</p>
+      <button type="submit" [disabled]="!formGroup.valid">Save</button>
+    </form>
+  </section>
 </main>

@@ -1,0 +1,17 @@
+<form
+  *ngIf="showLogin$ | async"
+  class="form"
+  [formGroup]="formGroup"
+  (submit)="submit()"
+>
+  <label for="email">Email:</label>
+  <input name="email" type="email" formControlName="email" />
+  <label for="password">Password:</label>
+  <input name="password" type="password" formControlName="password" />
+  <p class="errorMessage">{{ this.errorMessage }}</p>
+  <button type="submit" [disabled]="!formGroup.valid">Login</button>
+</form>
+<div *ngIf="user$ | async as user">
+  <p>Logged in as {{ user.email }}</p>
+  <button type="button" (click)="logout()">Logout</button>
+</div>

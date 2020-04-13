@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/functions';
+import 'firebase/auth';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { tap, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FirebaseFunctionsService {
+export class FirebaseService {
+  user$: Observable<firebase.User>;
   constructor() {
     const firebaseConfig = {
       apiKey: 'AIzaSyCeT1s5vaxl1beFY-I2ISrB6kKgJRSfWPY',
@@ -18,6 +22,17 @@ export class FirebaseFunctionsService {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const userSubject = new Subject<firebase.User>();
+    this.user$ = userSubject.pipe(shareReplay(1));
+    firebase.auth().onIdTokenChanged(userSubject);
+  }
+
+  async login(email: string, password: string): Promise<void> {
+    await firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  async logout(): Promise<void> {
+    await firebase.auth().signOut();
   }
 
   async saveUserData(text: string): Promise<void> {
