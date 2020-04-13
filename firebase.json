@@ -6,7 +6,7 @@
     ]
   },
   "hosting": {
-    "public": "angular/dist",
+    "public": "angular/dist/update-github-poc",
     "ignore": [
       "firebase.json",
       "**/.*",
