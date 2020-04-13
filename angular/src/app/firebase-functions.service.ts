@@ -20,8 +20,8 @@ export class FirebaseFunctionsService {
     firebase.initializeApp(firebaseConfig);
   }
 
-  saveText(text: string) {
-    const saveText = firebase.functions().httpsCallable('saveText');
-    saveText(text);
+  async saveUserData(text: string): Promise<void> {
+    const saveUserData = firebase.functions().httpsCallable('saveUserData');
+    await saveUserData({ text });
   }
 }

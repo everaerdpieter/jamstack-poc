@@ -5,6 +5,7 @@
   </section>
   <form class="saveForm" [formGroup]="formGroup" (submit)="submit()">
     <textarea formControlName="textArea"> </textarea>
+    <p class="errorMessage">{{ this.errorMessage }}</p>
     <button type="submit" [disabled]="!formGroup.valid">Save</button>
   </form>
 </main>
