@@ -7,13 +7,15 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "downloadConfig": "firebase functions:config:get > .runtimeconfig.json"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@octokit/rest": "^17.2.1",
     "firebase-admin": "^8.9.0",
     "firebase-functions": "^3.3.0",
     "nodegit": "^0.26.5"
