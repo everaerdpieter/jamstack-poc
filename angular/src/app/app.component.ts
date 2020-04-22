@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseService } from './firebase.service';
+import { GitHubService } from './services/git-hub-service';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +9,25 @@ import { FirebaseService } from './firebase.service';
 })
 export class AppComponent implements OnInit {
   title = 'update-github-poc';
-  savedText: string;
   formGroup: FormGroup;
   errorMessage: string;
 
-  constructor(private readonly firebaseService: FirebaseService) {
-    this.savedText = 'todo: this text should come from the backend';
-  }
-
-  ngOnInit() {
+  constructor(private readonly gitHubService: GitHubService) {
     this.formGroup = new FormGroup({
       textArea: new FormControl(null, Validators.required),
     });
+  }
+
+  async ngOnInit() {
+    const readMeContent = await this.gitHubService.getReadMe();
+    this.formGroup.get('textArea').setValue(readMeContent);
   }
 
   async submit() {
     this.errorMessage = null;
     const text = this.formGroup.get('textArea').value;
     try {
-      await this.firebaseService.saveUserData(text);
+      await this.gitHubService.saveReadMe(text);
     } catch (error) {
       this.errorMessage = error.message;
     }
