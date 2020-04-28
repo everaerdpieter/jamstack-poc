@@ -8,7 +8,7 @@ import { GitHubService } from './services/git-hub-service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'update-github-poc';
+  title = 'jamstack-poc';
   formGroup: FormGroup;
   errorMessage: string;
 

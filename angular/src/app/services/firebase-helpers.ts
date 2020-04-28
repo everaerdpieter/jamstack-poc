@@ -6,15 +6,16 @@ let initialized = false;
 
 function initializeApp() {
   if (!initialized) {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyCeT1s5vaxl1beFY-I2ISrB6kKgJRSfWPY',
-      authDomain: 'update-github-poc.firebaseapp.com',
-      databaseURL: 'https://update-github-poc.firebaseio.com',
-      projectId: 'update-github-poc',
-      storageBucket: 'update-github-poc.appspot.com',
-      messagingSenderId: '180636128882',
-      appId: '1:180636128882:web:748a5791d6fc684a8f94eb',
-    });
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlvl8kmageQMexFvxOXc6Bqhej01JurFA",
+      authDomain: "jamstack-poc.firebaseapp.com",
+      databaseURL: "https://jamstack-poc.firebaseio.com",
+      projectId: "jamstack-poc",
+      storageBucket: "jamstack-poc.appspot.com",
+      messagingSenderId: "488982422210",
+      appId: "1:488982422210:web:29bb29cbb28fbdd3de115b"
+    };
+    firebase.initializeApp(firebaseConfig);
     initialized = true;
   }
 }

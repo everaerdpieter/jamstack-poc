@@ -2,10 +2,10 @@ import * as functions from 'firebase-functions';
 import { Octokit } from '@octokit/rest';
 import { createHandlerWithDefaultMiddleware } from './on-call-middleware';
 
-const gitHubAccesToken = functions.config().github.accestoken;
-const octokit = new Octokit({ auth: gitHubAccesToken });
+const gitHubAccessToken = functions.config().github.accesstoken;
+const octokit = new Octokit({ auth: gitHubAccessToken });
 const owner = 'everaerdpieter';
-const repo = 'update-github-poc';
+const repo = 'jamstack-poc';
 
 const readMePath = 'README.md';
 

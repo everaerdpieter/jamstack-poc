@@ -6,12 +6,8 @@
     ]
   },
   "hosting": {
-    "public": "angular/dist/update-github-poc",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "angular/dist/jamstack-poc",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
