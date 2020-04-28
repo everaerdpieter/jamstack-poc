@@ -1,7 +1,28 @@
-# update-github-poc
+# Jamstack proof of concept
 
-## angular
-angular app deploy via firebase hosting
+## Goal
 
-## functions
-firebase functions
+Fast seo friendly site with admin portal to edit the site's content.
+
+## How
+
+[Jamstack approach:](https://jamstack.org/)
+
+- Git source control contains code and content of the site.
+- Site itself is angular.
+- Main pages of the site are prerendered for fast rendering and seo friendlyness.
+- Admin portal is a lazy loaded angular module. It is not loaded when only visiting the main pages.
+- Admin portal uses Google Cloud function to edit content in GitHub,
+- Github actions trigger a build and deploy when changes.
+- During the build the main pages of the site are prerendered.
+
+## Why
+
+- Main pages are prerendered and deployed via CDN to be fast and seo-friendly.
+- Site content can be edited like e.g. a wordpress site,
+- But site visitor requests are not handled by a server process rendering the pages, but by a CDN delivering prerendered pages.
+
+## Note
+
+- Probably better to use static site generator instead of angular in combination with prerendered pages
+- This is a POC where every authenticated user can edit the site content. Normally only certain users should be allowed to edit the site. Unauthenticated users cannot edit the site content.
