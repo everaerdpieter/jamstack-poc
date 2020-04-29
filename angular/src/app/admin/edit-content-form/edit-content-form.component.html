@@ -1,0 +1,5 @@
+<form class="userdata" [formGroup]="formGroup" (submit)="submit()">
+  <textarea class="textArea" formControlName="textArea"> </textarea>
+  <p class="errorMessage">{{ this.errorMessage }}</p>
+  <button type="submit" [disabled]="!formGroup.valid">Save</button>
+</form>

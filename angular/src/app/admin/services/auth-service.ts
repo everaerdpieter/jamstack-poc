@@ -13,9 +13,11 @@ export class AuthService {
     this.user$ = userSubject.pipe(shareReplay(1));
     auth().onIdTokenChanged(userSubject);
   }
+
   async login(email: string, password: string): Promise<void> {
     await auth().signInWithEmailAndPassword(email, password);
   }
+
   async logout(): Promise<void> {
     await auth().signOut();
   }
