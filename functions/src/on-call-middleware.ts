@@ -32,10 +32,7 @@ export const errorHandlerMiddlware: MiddleWare = (data, context, next) => {
 
 export const authenticationMiddleware: MiddleWare = (data, context, next) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError(
-      'unauthenticated',
-      'Authentication is required to call this firebase function'
-    );
+    throw new functions.https.HttpsError('unauthenticated', 'Authentication is required');
   }
 
   return next(data, context);

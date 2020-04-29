@@ -4,14 +4,14 @@ import { functions } from './firebase-helpers';
   providedIn: 'root',
 })
 export class GitHubService {
-  async getReadMe(): Promise<string> {
-    const getReadMe = functions().httpsCallable('gitHub-getReadMe');
-    const result = await getReadMe('');
+  async getContent(path: string): Promise<string> {
+    const getContent = functions().httpsCallable('gitHub-getContent');
+    const result = await getContent({ path });
     return result.data;
   }
 
-  async saveReadMe(content: string): Promise<void> {
-    const saveReadMe = functions().httpsCallable('gitHub-saveReadMe');
-    await saveReadMe(content);
+  async saveContent(path: string, content: string): Promise<void> {
+    const saveContent = functions().httpsCallable('gitHub-saveContent');
+    await saveContent({ path, content });
   }
 }

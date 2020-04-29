@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GitHubService } from '../services/git-hub-service';
 
+const homePageContentPath = 'home-page.md';
+
 @Component({
   selector: 'app-edit-content-form',
   templateUrl: './edit-content-form.component.html',
@@ -18,7 +20,9 @@ export class EditContentFormComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const readMeContent = await this.gitHubService.getReadMe();
+    const readMeContent = await this.gitHubService.getContent(
+      homePageContentPath
+    );
     this.formGroup.get('textArea').setValue(readMeContent);
   }
 
@@ -26,7 +30,7 @@ export class EditContentFormComponent implements OnInit {
     this.errorMessage = null;
     const text = this.formGroup.get('textArea').value;
     try {
-      await this.gitHubService.saveReadMe(text);
+      await this.gitHubService.saveContent(homePageContentPath, text);
     } catch (error) {
       this.errorMessage = error.message;
     }
