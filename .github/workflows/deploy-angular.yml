@@ -2,6 +2,8 @@ name: deploy angular site
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'angular/**'
 
