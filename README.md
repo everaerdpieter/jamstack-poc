@@ -21,3 +21,7 @@ Fast seo friendly site with admin portal to edit the site's content.
 - Site content can be edited like e.g. a wordpress site,
 - But site visitor requests are not handled by a server process rendering the pages, but by a CDN delivering prerendered pages.
 - All changes to the site are versioned in git
+
+## Demo
+
+[https://jamstack-poc.web.app/]https://jamstack-poc.web.app/
