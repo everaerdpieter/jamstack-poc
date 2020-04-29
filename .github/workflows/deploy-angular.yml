@@ -16,12 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: angular/node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('angular/**/package-lock.json') }}
-          restore-keys: ${{ runner.OS }}-build-angular-${{ env.cache-name }}
 
       - name: Install Dependencies
         working-directory: ./angular
