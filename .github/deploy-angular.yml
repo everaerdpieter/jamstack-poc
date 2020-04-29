@@ -1,0 +1,39 @@
+name: deploy angular site
+
+on:
+  push:
+    paths:
+      - 'angular/**'
+
+env:
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: angular/node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('angular/**/package-lock.json') }}
+          restore-keys: ${{ runner.OS }}-build-angular-${{ env.cache-name }}
+
+      - name: Install Dependencies
+        working-directory: ./angular
+        run: npm ci
+
+      - name: Authenticate to firebase
+        run: npx firebase use --token $FIREBASE_TOKEN
+
+      - name: Build and deploy
+        working-directory: ./angular
+        run: npm run deploy
+
+      - name: Archive dist folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: angular/dist
