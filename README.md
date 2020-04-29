@@ -24,4 +24,4 @@ Fast seo friendly site with admin portal to edit the site's content.
 
 ## Demo
 
-[https://jamstack-poc.web.app/]https://jamstack-poc.web.app/
+https://jamstack-poc.web.app/
