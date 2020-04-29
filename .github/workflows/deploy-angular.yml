@@ -26,6 +26,7 @@ jobs:
         run: npm ci
 
       - name: Authenticate to firebase
+        working-directory: ./angular
         run: npx firebase use --token $FIREBASE_TOKEN
 
       - name: Build and deploy
