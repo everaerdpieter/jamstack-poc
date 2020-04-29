@@ -6,11 +6,11 @@ import { createHandlerWithDefaultMiddleware } from './on-call-middleware';
 const owner = 'everaerdpieter';
 const repo = 'jamstack-poc';
 const gitHubAccessToken = functions.config().github.accesstoken;
-const octokit = new Octokit({ auth: gitHubAccessToken });
 const contentFolderPath = 'angular/src/assets/content';
 
 export const getContent = createHandlerWithDefaultMiddleware(async (data, context) => {
   const contentFilePath = path.join(contentFolderPath, data.path);
+  const octokit = new Octokit({ auth: gitHubAccessToken });
   const response = await octokit.repos.getContents({
     owner,
     repo,
@@ -23,6 +23,7 @@ export const getContent = createHandlerWithDefaultMiddleware(async (data, contex
 
 export const saveContent = createHandlerWithDefaultMiddleware(async (data, context) => {
   const contentFilePath = path.join(contentFolderPath, data.path);
+  const octokit = new Octokit({ auth: gitHubAccessToken });
   const response = await octokit.repos.getContents({
     owner,
     repo,
@@ -32,5 +33,12 @@ export const saveContent = createHandlerWithDefaultMiddleware(async (data, conte
 
   const message = '[Admin portal] Content update';
   const content = Buffer.from(data.content).toString('base64');
-  await octokit.repos.createOrUpdateFile({ owner, repo, content, message, path: data.path, sha });
+  await octokit.repos.createOrUpdateFile({
+    owner,
+    repo,
+    content,
+    message,
+    path: contentFilePath,
+    sha,
+  });
 });
