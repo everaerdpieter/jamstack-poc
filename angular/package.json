@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod && firebase deploy --only hosting --non-interactive",
+    "deploy": "ng run jamstack-poc:prerender && firebase deploy --only hosting --non-interactive",
     "dev:ssr": "ng run jamstack-poc:serve-ssr",
     "serve:ssr": "node dist/jamstack-poc/server/main.js",
     "build:ssr": "ng build --prod && ng run jamstack-poc:server:production",
