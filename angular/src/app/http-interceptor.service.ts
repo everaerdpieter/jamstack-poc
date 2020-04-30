@@ -23,7 +23,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (isPlatformServer(this.platformId) && req.url.includes('./')) {
       return next.handle(
         req.clone({
-          url: `http://localhost:4200/${req.url.replace('./', '')}`,
+          url: `http://localhost:4000/${req.url.replace('./', '')}`,
         })
       );
     }
