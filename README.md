@@ -5,12 +5,10 @@
 Fast seo friendly site with admin portal to edit the site's content.
 
 ## How
-
-[Jamstack approach:](https://jamstack.org/)
-
+Idea based on [Jamstack approach](https://jamstack.org/):
 - Git source control contains code and content of the site.
 - Site itself is angular.
-- Main pages of the site are prerendered for fast rendering and seo friendlyness.
+- Main pages of the site are prerendered for fast rendering and better seo.
 - Admin portal is a lazy loaded angular module. It is not loaded when only visiting the main pages.
 - Admin portal uses Google Cloud function to edit content in GitHub.
 - Github actions as a lightweight CI/DC pipeline to deploy a new version of the site when content was changed.
