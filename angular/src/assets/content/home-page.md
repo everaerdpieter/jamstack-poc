@@ -13,7 +13,4 @@ Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this!~~
 
-If you want to embed images, this is how you do it: 
-```![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)```
-
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
