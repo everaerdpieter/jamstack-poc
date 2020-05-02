@@ -13,7 +13,7 @@
     "serve:ssr": "node dist/jamstack-poc/server/main.js",
     "build:ssr": "ng build --prod && ng run jamstack-poc:server:production",
     "serve:assets": "http-server src/assets",
-    "prerender": "concurrently 'npm:serve:assets' 'ng run jamstack-poc:prerender' --kill-others --success last"
+    "prerender": "concurrently 'npm:serve:assets' 'ng run jamstack-poc:prerender' --kill-others --success first"
   },
   "private": true,
   "dependencies": {
