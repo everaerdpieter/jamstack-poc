@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
     });
     this.showLogin$ = this.authService.user$.pipe(
       map((user) => user === null),
-      startWith(false)
+      startWith(true)
     );
     this.user$ = this.authService.user$;
   }
