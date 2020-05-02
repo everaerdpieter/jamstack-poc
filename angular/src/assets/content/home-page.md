@@ -13,4 +13,5 @@ Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this!~~
 
+
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
