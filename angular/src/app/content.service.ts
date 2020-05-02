@@ -2,7 +2,11 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { isPlatformServer } from '@angular/common';
-import { CONTENT_TRANSFER_STATE_KEY_PREFIX } from './home-page/home-resolver.service';
+
+const PRERENDER_ASSETS_URL = 'http://127.0.0.1:8085';
+const CONTENT_DIRECTORY = './assets/content/';
+const CONTENT_TRANSFER_STATE_KEY_PREFIX = 'content-';
+
 @Injectable({ providedIn: 'root' })
 export class ContentService {
   constructor(
@@ -11,16 +15,16 @@ export class ContentService {
     private platformId,
     private transferState: TransferState
   ) {}
-  async getContent(contentPath: string): Promise<string> {
+  async getContent(contentFilePath: string): Promise<string> {
     const key = makeStateKey<string>(
-      CONTENT_TRANSFER_STATE_KEY_PREFIX + contentPath
+      CONTENT_TRANSFER_STATE_KEY_PREFIX + contentFilePath
     );
     if (isPlatformServer(this.platformId)) {
       // when prerendering:
       // get content from served assets and save it in the transferstate
-      // assets should be servered at http://127.0.0.1:8085/ in order for this to work
+      // assets should be servered at PRERENDER_ASSETS_HOSTNAME in order for this to work
       const content = await this.httpClient
-        .get(`http://127.0.0.1:8085/content/${contentPath}`, {
+        .get(`${PRERENDER_ASSETS_URL}/content/${contentFilePath}`, {
           responseType: 'text',
         })
         .toPromise();
@@ -34,7 +38,7 @@ export class ContentService {
         return course;
       } else {
         return this.httpClient
-          .get(`./assets/content/${contentPath}`, {
+          .get(`${CONTENT_DIRECTORY}${contentFilePath}`, {
             responseType: 'text',
           })
           .toPromise();

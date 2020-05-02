@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ContentService } from '../content.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,9 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
   markdown: string;
-  constructor(activatedRoute: ActivatedRoute) {
-    this.markdown = activatedRoute.snapshot.data.markdown;
-  }
+  constructor(private contentService: ContentService) {}
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    this.markdown = await this.contentService.getContent('home-page.md');
+  }
 }
