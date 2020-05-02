@@ -8,17 +8,6 @@
   "hosting": {
     "public": "angular/dist/jamstack-poc/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "headers": [
-      {
-        "source": "assets/content/**",
-        "headers": [
-          {
-            "key": "cache-control",
-            "value": "no-store"
-          }
-        ]
-      }
-    ],
     "rewrites": [
       {
         "source": "**",
