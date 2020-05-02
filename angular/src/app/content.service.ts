@@ -34,14 +34,15 @@ export class ContentService {
       // in browser:
       // try to get content from transferstate, otherwise get it from assets
       if (this.transferState.hasKey(key)) {
-        const course = this.transferState.get<string>(key, null);
-        return course;
+        return this.transferState.get<string>(key, null);
       } else {
-        return this.httpClient
+        const content = await this.httpClient
           .get(`${CONTENT_DIRECTORY}${contentFilePath}`, {
             responseType: 'text',
           })
           .toPromise();
+        this.transferState.set(key, content);
+        return content;
       }
     }
   }
