@@ -20,6 +20,9 @@ Idea based on [Jamstack approach](https://jamstack.org/):
 - But site visitor requests are not handled by a server process rendering the pages, but by a CDN delivering prerendered pages.
 - All changes to the site are versioned in git
 
+## Notes
+Prerendering is not trivial and should be tested
+
 ## Demo
 
 https://jamstack-poc.web.app/
