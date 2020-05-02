@@ -20,11 +20,11 @@ export class HttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // when prerendering the assets should be servered at http://127.0.0.1:8080/ in order for this to work
+    // when prerendering the assets should be servered at http://127.0.0.1:8085/ in order for this to work
     if (isPlatformServer(this.platformId) && req.url.includes('./assets')) {
       return next.handle(
         req.clone({
-          url: `http://127.0.0.1:8080/${req.url.replace('./assets', '')}`,
+          url: `http://127.0.0.1:8085/${req.url.replace('./assets', '')}`,
         })
       );
     }
