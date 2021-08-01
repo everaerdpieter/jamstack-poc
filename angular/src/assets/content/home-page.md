@@ -1,4 +1,4 @@
-# Jamstack POC
+# Jamstack POC 2
 
 If you go to the admin page you can edit this content.
 Editing content will start a CI/CD pipeline and deploy a new version of this site.
